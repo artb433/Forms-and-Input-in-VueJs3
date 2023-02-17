@@ -8,7 +8,28 @@
     <select v-model="role">
       <option value="developer">Web Developer</option>
       <option value="designer">Web Designer</option>
+      <option value="devops">DevOps</option>
+      <option value="sysadmin">System Admininstrator</option>
+      <option value="networkadmin">Network Admininstrator</option>
+      <option value="databaseadmin">Database Admininstrator</option>
+      <option value="dataanalyst">Data Analyst</option>
+      <option value="cybersecurity">Cybersecurity</option>
+      <option value="itsupport">IT Support</option>
+      <option value="projectmanager">Project Manager</option>
+      <option value="businessanalyst">Business Analyst</option>
+      <option value="qa">Quality Assurance</option>
+      <option value="sales">Sales</option>
+      <option value="marketing">Marketing</option>
+      <option value="finance">Finance</option>
+      <option value="hr">Human Resources</option>
+      <option value="other">Other</option>
     </select>
+
+    <label>Skills:</label>
+    <input type="text" v-model="tempSkill" @keyup.alt="addSkill">
+    <div v-for="skill in skills" :key="skill" class="pill">
+      {{ skill  }}
+    </div>
 
   
       <input type="checkbox" value="newsletter" v-model="names">
@@ -48,11 +69,22 @@ export default {
       password: '',
       role: '',
       names: [],
-      terms: false
+      terms: false,
+      tempSkill: '',
+      skills: []
     };
   },
   props: {},
-  methods: {},
+  methods: {
+    addSkill(e){
+      if(e.key === ',' && this.tempSkill){
+        if(!this.skills.includes(this.tempSkill)){
+        this.skills.push(this.tempSkill);
+        }
+        this.tempSkill = '';
+      }
+    }
+  },
 };
 </script>
 
